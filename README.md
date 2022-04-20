@@ -92,8 +92,3 @@ To customize the "account blocked template" you can publish the views and change
 ```
 php artisan vendor:publish --tag=account-status-views
 ```
-
-## Roadmap
-
-- Maybe provide a logout method on the builin view.
-- Rule to use when login in.
