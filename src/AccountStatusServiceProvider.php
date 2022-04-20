@@ -14,7 +14,6 @@ class AccountStatusServiceProvider extends PackageServiceProvider
         $package->name('laravel-account-status')
             ->hasConfigFile()
             ->hasViews('account-status')
-            ->hasRoute('web')
             ->hasMigration('update_users_table')
             ->hasCommands([
                 Toggle::class,

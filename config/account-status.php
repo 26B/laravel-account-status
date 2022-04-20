@@ -27,11 +27,13 @@ return [
     'default_status' => AccountStatus::ACTIVE,
 
     /**
+     * Routes that the middleware should not block for non active users.
      *
-     *
-     * @var string
+     * @var array
      */
-    'view_name' => 'auth.account-status',
+    'non_protected_routes' => [
+        'logout',
+    ],
 
     /**
      * List of valid status.
