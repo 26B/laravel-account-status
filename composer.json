@@ -1,6 +1,6 @@
 {
     "name": "26b/laravel-account-status",
-    "description": "Laravel package for Content Pages",
+    "description": "Laravel package for account statuses",
     "type": "library",
     "require": {
         "php": "^7.4 || ^8.0",

@@ -37,6 +37,7 @@ class Activate extends Command
 
         $query = $model::select('id', $column)
             ->where($column, '<>', AccountStatus::ACTIVE)
+            ->orWhereNull($column)
             ->limit($this->argument('amount'));
 
         $this->withProgressBar(
