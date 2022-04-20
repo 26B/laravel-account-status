@@ -3,7 +3,6 @@
 Configurable statuses for your user accounts.
 
 - Handle access to application conditionally.
-- Redirect to an account status view if not `ACTIVE`.
 - Artisan command to toggle status for given user.
 - Artisan command to activate X accounts.
 
@@ -30,6 +29,12 @@ php artisan account-status:activate 100
 
 ## Usage
 
+To protect your routes and redirect to the account status page you can add the builtin middleware to your kernel or individually to your routes.
+
+```php
+    \TwentySixB\LaravelAccountStatus\Http\Middleware\EnsureAccountActive::class,
+```
+
 ### Commands
 
 **Toggle**
@@ -45,10 +50,45 @@ When you have, for example, `QUEUED` users you can change their status to `ACTIV
 php artisan account-status:activate 50
 ```
 
-## Custom configuration
+### Factories
+
+You can add some states to your factories to test your app.
+
+```php
+$user = User::factory()->queued()->make();
+```
+
+```php
+use TwentySixB\LaravelAccountStatus\AccountStatus;
+
+...
+
+/**
+ * Indicate that the model's is in a queued state.
+ *
+ * @return \Illuminate\Database\Eloquent\Factories\Factory
+ */
+public function queued()
+{
+    return $this->state(
+        function (array $attributes) {
+            return [
+                'status' => AccountStatus::QUEUED,
+            ];
+        }
+    );
+}
+```
+
+## Customizing
 
 Publish the configuration file should you need to customise it.
 
 ```
 php artisan vendor:publish --tag=account-status-config
+```
+
+To customize the "account blocked template" you can publish the views and change them at your will.
+```
+php artisan vendor:publish --tag=account-status-views
 ```
