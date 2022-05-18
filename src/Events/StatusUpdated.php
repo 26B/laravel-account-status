@@ -44,6 +44,6 @@ class StatusUpdated
      */
     public function getPreviousState() : string
     {
-        return $this->previous_state;
+        return $this->previous_state ?? '';
     }
 }
